@@ -176,14 +176,17 @@ const CategoryGrid = ({ language = 'az' }) => {
       <Box 
         sx={{ 
           display: { xs: 'block', md: 'none' },
-          mt: -18,
+          mt: -19,
           overflowX: 'auto',
           WebkitOverflowScrolling: 'touch',
           '&::-webkit-scrollbar': {
             display: 'none'
           },
           scrollbarWidth: 'none',
-          msOverflowStyle: 'none'
+          msOverflowStyle: 'none',
+          bgcolor: { xs: '#fff', md: 'transparent' },
+          mx: { xs: '-16px', sm: 0 },
+          width: { xs: 'calc(100% + 32px)', sm: '100%' }
         }}
       >
         <Box
@@ -217,12 +220,13 @@ const CategoryGrid = ({ language = 'az' }) => {
                   border: 'none',
                   boxShadow: 'none',
                   borderRadius: '50%',
-                  bgcolor: '#ffffff',
+                  bgcolor: '#f5f5f5',
                   mx: 'auto',
                   mb: 1,
                   '&:hover': {
                     border: 'none',
                     boxShadow: 'none',
+                    bgcolor: '#f5f5f5'
                   }
                 }}
               >

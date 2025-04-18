@@ -14,7 +14,7 @@ import DiamondIcon from '@mui/icons-material/Diamond';
 
 const PremiumCard = styled(Paper)(({ theme }) => ({
   padding: 0,
-  borderRadius: 0,
+  borderRadius: '8px',
   cursor: 'pointer',
   transition: 'all 0.2s ease-in-out',
   position: 'relative',
@@ -30,10 +30,10 @@ const ListingBadges = ({ isPremium, isVip }) => (
     sx={{
       position: 'absolute',
       top: 8,
-      right: 8,
+      right: 24,
       display: 'flex',
       gap: 0.5,
-      zIndex: 1
+      zIndex: 2
     }}
   >
     {isPremium && (
@@ -45,7 +45,8 @@ const ListingBadges = ({ isPremium, isVip }) => (
           height: 20,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          position: 'relative'
         }}
       >
         <StarIcon sx={{ fontSize: 14, color: '#fff' }} />
@@ -60,7 +61,8 @@ const ListingBadges = ({ isPremium, isVip }) => (
           height: 20,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          position: 'relative'
         }}
       >
         <DiamondIcon sx={{ fontSize: 14, color: '#fff' }} />
@@ -85,21 +87,29 @@ const MainContent = () => {
         {/* Premium Listings Section */}
         <Box sx={{ mb: 4 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography variant="h6" sx={{ color: '#212121', fontWeight: 500 }}>
-              Premium Elanlar
+            <Typography variant="h6" sx={{ 
+              color: { xs: '#6B7280', sm: '#212121' },
+              fontWeight: { xs: 400, sm: 500 },
+              fontSize: { xs: '14px', sm: '20px' },
+              fontFamily: { xs: 'Inter', sm: 'inherit' },
+              textTransform: { xs: 'uppercase', sm: 'none' },
+              letterSpacing: { xs: '0.5px', sm: 'normal' }
+            }}>
+              PREMİUM ELANLAR
             </Typography>
             <Button 
               sx={{ 
                 color: '#1976d2',
                 textTransform: 'none',
                 fontSize: '14px',
+                textDecoration: { xs: 'underline', sm: 'none' },
                 '&:hover': {
                   backgroundColor: 'transparent',
                   color: '#1565c0',
                 }
               }}
             >
-              Bütün elanlar
+              Son elanlar
             </Button>
           </Box>
           
@@ -110,24 +120,32 @@ const MainContent = () => {
                   <Box 
                     sx={{ 
                       position: 'relative',
-                      height: { xs: 160, sm: 200 },
+                      height: { xs: '90px', sm: '200px' },
+                      width: { xs: '160.5px', sm: '100%' },
                       bgcolor: '#e0e0e0',
-                      borderRadius: 0,
+                      borderRadius: '8px 8px 0 0',
                       backgroundImage: `url(${laptopImage})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      margin: { xs: '0 auto', sm: 0 }
                     }}
                   >
                     <ListingBadges isPremium />
                   </Box>
-                  <Box sx={{ p: 1.5 }}>
+                  <Box sx={{ 
+                    p: { xs: 1, sm: 1.5 },
+                    width: { xs: '160.5px', sm: '100%' },
+                    margin: { xs: '0 auto', sm: 0 },
+                    bgcolor: '#fff',
+                    borderRadius: '0 0 8px 8px'
+                  }}>
                     <Typography 
                       sx={{ 
                         fontSize: { xs: '13px', sm: '16px' },
                         fontWeight: 500,
                         color: '#212121',
-                        mb: 1,
+                        mb: 0.5
                       }}
                     >
                       Noutbuk
@@ -137,6 +155,7 @@ const MainContent = () => {
                         fontSize: { xs: '15px', sm: '18px' },
                         fontWeight: 700,
                         color: '#1976d2',
+                        mb: 0.5
                       }}
                     >
                       0 AZN
@@ -144,8 +163,7 @@ const MainContent = () => {
                     <Typography 
                       sx={{ 
                         fontSize: { xs: '11px', sm: '13px' },
-                        color: '#757575',
-                        mt: 1,
+                        color: '#757575'
                       }}
                     >
                       Bakı, bugün 00:00
@@ -187,24 +205,32 @@ const MainContent = () => {
                   <Box 
                     sx={{ 
                       position: 'relative',
-                      height: { xs: 160, sm: 200 },
+                      height: { xs: '90px', sm: '200px' },
+                      width: { xs: '160.5px', sm: '100%' },
                       bgcolor: '#e0e0e0',
-                      borderRadius: 0,
+                      borderRadius: '8px 8px 0 0',
                       backgroundImage: `url(${laptopImage})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      margin: { xs: '0 auto', sm: 0 }
                     }}
                   >
                     <ListingBadges isVip />
                   </Box>
-                  <Box sx={{ p: 1.5 }}>
+                  <Box sx={{ 
+                    p: { xs: 1, sm: 1.5 },
+                    width: { xs: '160.5px', sm: '100%' },
+                    margin: { xs: '0 auto', sm: 0 },
+                    bgcolor: '#fff',
+                    borderRadius: '0 0 8px 8px'
+                  }}>
                     <Typography 
                       sx={{ 
                         fontSize: { xs: '13px', sm: '16px' },
                         fontWeight: 500,
                         color: '#212121',
-                        mb: 1,
+                        mb: 0.5
                       }}
                     >
                       Noutbuk
@@ -214,6 +240,7 @@ const MainContent = () => {
                         fontSize: { xs: '15px', sm: '18px' },
                         fontWeight: 700,
                         color: '#1976d2',
+                        mb: 0.5
                       }}
                     >
                       0 AZN
@@ -221,8 +248,7 @@ const MainContent = () => {
                     <Typography 
                       sx={{ 
                         fontSize: { xs: '11px', sm: '13px' },
-                        color: '#757575',
-                        mt: 1,
+                        color: '#757575'
                       }}
                     >
                       Bakı, bugün 00:00
@@ -249,24 +275,32 @@ const MainContent = () => {
                   <Box 
                     sx={{ 
                       position: 'relative',
-                      height: { xs: 160, sm: 200 },
+                      height: { xs: '90px', sm: '200px' },
+                      width: { xs: '160.5px', sm: '100%' },
                       bgcolor: '#e0e0e0',
-                      borderRadius: 0,
+                      borderRadius: '8px 8px 0 0',
                       backgroundImage: `url(${laptopImage})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      margin: { xs: '0 auto', sm: 0 }
                     }}
                   >
                     <ListingBadges isPremium isVip />
                   </Box>
-                  <Box sx={{ p: 1.5 }}>
+                  <Box sx={{ 
+                    p: { xs: 1, sm: 1.5 },
+                    width: { xs: '160.5px', sm: '100%' },
+                    margin: { xs: '0 auto', sm: 0 },
+                    bgcolor: '#fff',
+                    borderRadius: '0 0 8px 8px'
+                  }}>
                     <Typography 
                       sx={{ 
                         fontSize: { xs: '13px', sm: '16px' },
                         fontWeight: 500,
                         color: '#212121',
-                        mb: 1,
+                        mb: 0.5
                       }}
                     >
                       Noutbuk
@@ -276,6 +310,7 @@ const MainContent = () => {
                         fontSize: { xs: '15px', sm: '18px' },
                         fontWeight: 700,
                         color: '#1976d2',
+                        mb: 0.5
                       }}
                     >
                       0 AZN
@@ -283,8 +318,7 @@ const MainContent = () => {
                     <Typography 
                       sx={{ 
                         fontSize: { xs: '11px', sm: '13px' },
-                        color: '#757575',
-                        mt: 1,
+                        color: '#757575'
                       }}
                     >
                       Bakı, bugün 00:00

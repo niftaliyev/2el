@@ -385,10 +385,14 @@ const Header = () => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: '#f5f5f5',
-                borderRadius: '8px',
+                backgroundColor: '#fff',
+                border: '1px solid #e0e0e0',
+                borderRadius: '100px',
                 padding: '8px 16px',
                 width: '100%',
+                '&:focus-within': {
+                  border: '1px solid #2196f3',
+                }
               }}
             >
               <SearchIcon sx={{ fontSize: 20, color: '#9e9e9e', mr: 1 }} />
