@@ -8,6 +8,9 @@ import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import MobileBottomNav from './components/BottomNavigation';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Profile from './pages/Profile';
+import Cabinet from './components/Cabinet';
 
 const theme = createTheme({
   palette: {
@@ -59,9 +62,20 @@ const AppContent = () => {
       <Box sx={{ pb: { xs: 7, md: 0 } }}>
         <Header />
         <Container maxWidth="lg">
-          <CategoryGrid language={language} />
-          <MainContent />
-          <Footer />
+          <Routes>
+            <Route path="/" element={
+              <>
+                <CategoryGrid language={language} />
+                <MainContent />
+                <Footer />
+              </>
+            } />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/favorites" element={<div>secilmisler test</div>} />
+            <Route path="/post" element={<div>elan  yerlesdir test</div>} />
+            <Route path="/messages" element={<div>mesaj test</div>} />
+            <Route path="/cabinet" element={<Cabinet />} />
+          </Routes>
         </Container>
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
           <MobileBottomNav />
@@ -73,9 +87,11 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <BrowserRouter>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </BrowserRouter>
   );
 };
 

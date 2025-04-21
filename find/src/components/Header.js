@@ -17,6 +17,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Paper,
+  Popover,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
@@ -40,7 +41,9 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import MenuIcon from '@mui/icons-material/Menu';
 import TranslateIcon from '@mui/icons-material/Translate';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLanguage } from '../contexts/LanguageContext';
+import Profile from './Profile';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -294,6 +297,7 @@ const Header = () => {
   const [subcategories, setSubcategories] = useState([]);
   const [value, setValue] = useState(0);
   const { language, toggleLanguage } = useLanguage();
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpenCatalog = () => {
     setOpenCatalogModal(true);
@@ -310,6 +314,16 @@ const Header = () => {
     const category = categories.find(cat => cat.id === categoryId);
     setSubcategories(category && category.subcategories ? category.subcategories : []);
   };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseProfile = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 
   const renderMobileHeader = () => (
     <>
@@ -751,15 +765,7 @@ const Header = () => {
                       '&:hover': { color: '#1976d2' }
                     }}
                   >
-                    <HistoryIcon sx={{ fontSize: 22 }} />
-                  </IconButton>
-                  <IconButton 
-                    sx={{ 
-                      color: '#757575',
-                      '&:hover': { color: '#1976d2' }
-                    }}
-                  >
-                    <PersonIcon sx={{ fontSize: 22 }} />
+                    <ChatIcon sx={{ fontSize: 22 }} />
                   </IconButton>
                   <Button
                     onClick={toggleLanguage}
@@ -795,10 +801,43 @@ const Header = () => {
                   >
                     Yeni elan
                   </Button>
+                  <IconButton 
+                    onClick={handleClick}
+                    sx={{ 
+                      ml: 1,
+                      color: open ? '#1976d2' : '#757575',
+                      '&:hover': { color: '#1976d2' }
+                    }}
+                  >
+                    <PersonIcon sx={{ fontSize: 22 }} />
+                  </IconButton>
                 </Box>
               </Toolbar>
             </Container>
           </AppBar>
+          <Popover
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleCloseProfile}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            sx={{
+              '& .MuiPopover-paper': {
+                marginTop: '8px',
+                minWidth: '240px',
+                borderRadius: '8px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              }
+            }}
+          >
+            <Profile />
+          </Popover>
           <Modal
             open={openCatalogModal}
             onClose={handleCloseCatalog}

@@ -52,5 +52,20 @@ export const az = {
   common: {
     premium_listings: 'Premium Elanlar',
     view_all: 'Bütün elanlar'
+  },
+  navigation: {
+    search: 'Axtarış',
+    favorites: 'Seçilmişlər',
+    post: 'Yeni elan',
+    messages: 'Mesajlar',
+    profile: 'Profil'
+  },
+  profile: {
+    guest: 'Qonaq',
+    guest_message: 'Elan yerləşdirmək və seçilmişlərə əlavə etmək üçün daxil olun',
+    favorites: 'Seçilmişlər',
+    view_history: 'Baxış tarixçəsi',
+    settings: 'Tənzimləmələr',
+    login: 'Daxil ol'
   }
 }; 

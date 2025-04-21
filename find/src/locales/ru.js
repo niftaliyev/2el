@@ -52,5 +52,20 @@ export const ru = {
   common: {
     premium_listings: 'Премиум объявления',
     view_all: 'Все премиум объявления'
+  },
+  navigation: {
+    search: 'Поиск',
+    favorites: 'Избранное',
+    post: 'Объявления',
+    messages: 'Сообщения',
+    profile: 'Профиль'
+  },
+  profile: {
+    guest: 'Гость',
+    guest_message: 'Войдите, чтобы публиковать объявления и сохранять в избранное',
+    favorites: 'Избранное',
+    view_history: 'История просмотров',
+    settings: 'Настройки',
+    login: 'Войти'
   }
 }; 

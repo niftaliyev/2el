@@ -1,107 +1,114 @@
-import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import HomeIcon from '@mui/icons-material/Home';
+import React from 'react';
+import { Paper, BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import AddIcon from '@mui/icons-material/Add';
-import ChatIcon from '@mui/icons-material/Chat';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import PersonIcon from '@mui/icons-material/Person';
-import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { useTranslation } from '../locales';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
-const StyledBottomNav = styled(BottomNavigation)({
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-  right: 0,
+const StyledBottomNavigation = styled(BottomNavigation)({
   height: '49px',
-  backgroundColor: '#fff',
-  zIndex: 1000,
-  '& .MuiBottomNavigationAction-root': {
-    minWidth: 'auto',
-    padding: '6px 0',
-    color: '#8d8d8d',
-    '& .MuiBottomNavigationAction-label': {
-      fontSize: '10px',
-      fontFamily: 'Roboto',
-      fontWeight: 500,
-    },
-    '& .MuiSvgIcon-root': {
-      width: '24px',
-      height: '24px',
-    },
+  backgroundColor: '#fff'
+});
+
+const StyledBottomNavigationAction = styled(BottomNavigationAction)({
+  color: '#9CA3AF',
+  minWidth: '20%',
+  padding: '6px 0',
+  '&.Mui-selected': {
+    color: '#000000',
+  },
+  '& .MuiBottomNavigationAction-label': {
+    fontSize: '10px',
+    lineHeight: 1.2,
+    marginTop: '2px',
+    fontWeight: 400,
+    fontFamily: 'Roboto, sans-serif',
+    opacity: 1,
+    transform: 'none',
     '&.Mui-selected': {
-      color: '#1976d2',
+      fontSize: '10px'
     }
+  },
+  '& .MuiSvgIcon-root': {
+    width: '22px',
+    height: '22px',
+    color: 'inherit',
+    marginBottom: '2px'
   }
 });
 
-const AddButton = styled(Box)(({ theme }) => ({
-  position: 'fixed',
-  left: '50%',
-  bottom: '28px',
-  transform: 'translateX(-50%)',
-  width: '56px',
-  height: '56px',
-  borderRadius: '50%',
-  backgroundColor: '#1976d2',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-  cursor: 'pointer',
-  zIndex: 1100,
-  '& .MuiSvgIcon-root': {
-    color: 'white',
-    width: '32px',
-    height: '32px'
-  }
-}));
-
 const MobileBottomNav = () => {
-  const [value, setValue] = useState('home');
+  const [value, setValue] = React.useState(0);
+  const { language } = useLanguage();
+  const { t } = useTranslation(language);
+  const navigate = useNavigate();
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    switch(newValue) {
+      case 0: // Search
+        navigate('/');
+        break;
+      case 1: // Favorites
+        navigate('/favorites');
+        break;
+      case 2: // Post
+        navigate('/post');
+        break;
+      case 3: // Messages
+        navigate('/messages');
+        break;
+      case 4: // Profile
+        navigate('/profile');
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <>
-      <StyledBottomNav
+    <Paper 
+      sx={{ 
+        position: 'fixed', 
+        bottom: 0, 
+        left: 0, 
+        right: 0,
+        zIndex: 1000,
+        boxShadow: 'none'
+      }} 
+      elevation={0}
+    >
+      <StyledBottomNavigation
         value={value}
-        onChange={(event, newValue) => {
-          if (newValue !== 'new') {
-            setValue(newValue);
-          }
-        }}
-        showLabels
+        onChange={handleChange}
       >
-        <BottomNavigationAction 
-          label="ƏSAS" 
-          value="home"
-          icon={<HomeIcon />} 
+        <StyledBottomNavigationAction
+          label={t('navigation.search')}
+          icon={<SearchIcon />}
         />
-        <BottomNavigationAction 
-          label="SEÇİLMİŞLƏR" 
-          value="favorites"
-          icon={<FavoriteIcon />} 
+        <StyledBottomNavigationAction
+          label={t('navigation.favorites')}
+          icon={<FavoriteIcon />}
         />
-        <BottomNavigationAction 
-          label="YENİ ELAN" 
-          value="new"
-          icon={<Box sx={{ width: 56, height: 24 }} />}
+        <StyledBottomNavigationAction
+          label={t('navigation.post')}
+          icon={<AddCircleOutlineIcon />}
         />
-        <BottomNavigationAction 
-          label="MESAJLAR" 
-          value="messages"
-          icon={<ChatIcon />} 
+        <StyledBottomNavigationAction
+          label={t('navigation.messages')}
+          icon={<ChatBubbleIcon />}
         />
-        <BottomNavigationAction 
-          label="KABİNET" 
-          value="profile"
-          icon={<PersonIcon />} 
+        <StyledBottomNavigationAction
+          label={t('navigation.profile')}
+          icon={<PersonIcon />}
         />
-      </StyledBottomNav>
-      <AddButton>
-        <AddIcon />
-      </AddButton>
-    </>
+      </StyledBottomNavigation>
+    </Paper>
   );
 };
 
